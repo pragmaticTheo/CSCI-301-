@@ -1,0 +1,158 @@
+\documentclass{article}
+
+\usepackage{qtree}
+\usepackage{amsmath}
+
+\newcommand{\fallingfactorial}[1]{%
+  ^{\underline{#1}}%
+}
+
+\title{CSCI 301 Homework 1}
+\date{2018-04-22}
+\author{Brandon Chavez}
+
+\begin{document}
+	\maketitle
+	\pagenumbering{gobble}
+	\newpage
+	\pagenumbering{roman}
+	
+	\paragraph{Problem 1}
+	
+	This problem is asking for a set containing every member of the Power Set of \{1,2,3\} which contains the number 2.
+	It is possible to discover every such set by simply mapping out each subset of \{1,2,3\} and cherrypicking out the
+	sets which contain two, like so:
+	
+	\qtreecentertrue
+	\Tree [.$\emptyset$ [.\{1\} [.\{1,2\} \{1,2,3\} \{1,2\} ]
+	                                         [.\{1\} \{1,3\} \{1\} ] ]
+				       [.$\emptyset$ [.\{2\} \{2,3\} \{2\} ] [.$\emptyset$ \{3\} $\emptyset$ ] ] ]
+	
+	Doing so, one can easily pick out the sets containing 2 and make a set of these elements. However, there
+	exists an even simpler alternative: logically, the power set of \{1,3\} contains every set that does not include
+	the number 2 in the power set of \{1,2,3\}. To illustrate for the sake of proving that statement:
+	
+	\qtreecentertrue
+	\Tree [.$\emptyset$ [.\{1\} \{1,3\} \{1\} ] 	
+			               [.$\emptyset$ \{3\} $\emptyset$ ] ]
+			               
+	So adding 2 to each of these sets gives us every subset of \{1,2,3\} which contains 2. So the set we are
+	looking for is
+	
+	\begin{equation*}
+		\{\textit{X} \in \textit{P} ( \,\{1,2,3\}) \,: 2 \in \textit{X}\} = \{\{1,2,3\}, \{1,2\}, \{2,3\}, \{2\}\}
+	\end{equation*}		
+	
+	\paragraph{Problem 2}
+	
+	The negation of a statement of the form $\textit{P} \Rightarrow \textit{Q}$ is $\textit{P} \land \neg \textit{Q}.$
+	If we allow \textit{P}, \textit{Q}, and \textit{R} represent the logical statements, ``x is a rational number," 
+	and ``$x \neq 0$,"  and ``$tan( \, x) \,$ is not a rational number respectively," then it becomes clear that 
+	Problem 2 presents such a statement. Specifically, $( \, \textit{P} \land \textit{Q} ) \, \Rightarrow \textit{R}$. 
+	Therefore, the negation of $( \, \textit{P} \land \textit{Q} ) \, \Rightarrow \textit{R}$ is 
+	$( \, \textit{P} \land\textit{Q}) \, \land \neg \textit{R}$. Translated back into English, this reads "\textit{x} is a rational number and \textit{x} does not equal zero, 
+	but $tan(x)$ is a rational number.
+	
+	\paragraph{Problem 3}
+	
+	The set \{1,2,3,4,5,6,7\} contains four different odd numbers. If they are to be placed first, and 
+	must be placed in a sequence, then there are four possible layouts for such an initial placement as follows:
+	
+	\begin{table} [h!] 
+	\centering
+		\begin{tabular} { | c | c | c | c | c | c | c | }
+		\hline
+		Odd & Odd & Odd & Odd & Even & Even & Even\\ 
+		\hline
+		\end{tabular}
+		\caption{Case 1}
+	\end{table}
+	
+	\newpage
+	
+	\begin{table} [h!] 
+	\centering
+		\begin{tabular} { | c | c | c | c | c | c | c | }
+		\hline
+		Even & Odd & Odd & Odd & Odd & Even & Even\\ 
+		\hline
+		\end{tabular}
+		\caption{Case 2}
+	\end{table}
+	
+	\begin{table} [h!] 
+	\centering
+		\begin{tabular} { | c | c | c | c | c | c | c | }
+		\hline
+		Even & Even & Odd & Odd & Odd & Odd & Even\\ 
+		\hline
+		\end{tabular}
+		\caption{Case 3}
+	\end{table}	
+	
+	\begin{table} [h!]
+	\centering
+		\begin{tabular} { | c | c | c | c | c | c | c | }
+		\hline
+		Even & Even & Even & Odd & Odd & Odd & Odd\\ 
+		\hline
+		\end{tabular}
+		\caption{Case 4}
+	\end{table}
+	
+	So there are is 1 choice (with 4 options) with, followed by 4 choices in which 
+	we must decide what numbers will actually be placed. Starting with $n$ options for the first 
+	choice, each successive number of options is $n - 1$ as we have one less option for 
+	the number we shall place each time. So the number of possible lists so far is 
+	$4 * 4\fallingfactorial{4}$. Extending the same logic to the placement of the remaining digits 
+	(the positive ones), we find that the remaining possible choices can be 
+	quantified by $3\fallingfactorial{3}$. Thus, the total number of possible lists in this scenario is
+	$4*4\fallingfactorial{4}*3\fallingfactorial{3} = 120$.
+	
+	\paragraph{Problem 4}
+	
+	Note that the sets containing every 4-card hand in which all 4 cards are from different suites and 
+	in which all 4 cards are red are \textit{mutually exclusive}. In other words, it is impossible for 
+	a 4-card hand of all red cards to \textit{also} be a 4-card hand with one card from each suite, 
+	because two of the suites are black. This means that we can simply find all possible hands for each
+	scenario, add them, and the resulting number is the answer. Naturally, there can be no repetition because
+	each card in a deck is unique to that deck.
+	
+	\begin{table} [h!]
+	\centering
+		\begin{tabular} { | c | c | c | c | }
+		\hline
+		Suit1 & Suit2 & Suit3 & Suit4 \\ 
+		\hline
+		\end{tabular}
+		\caption{Every card is from a different suite.}
+	\end{table}
+	
+	The first choice has 52 cards to choose from. However, every choice afterwards has 13 less cards because
+	whatever suit was picked last cannot be picked again if the condition is to be satisfied. Thus, for 4 choices, 
+	the total amount of possible lists is $52*39*26*13 = 685,464$.
+	
+	\begin{table} [h!]
+	\centering
+		\begin{tabular} { | c | c | c | c | }
+		\hline
+		redCard1 & redCard2 & redCard3 & redCard4 \\ 
+		\hline
+		\end{tabular}
+		\caption{Every card is red.}
+	\end{table}
+	
+	Here, the number of possible lists is simply $26\fallingfactorial{4}$ or 358,800, as the first choice 
+	has 26 cards, the second has 25, etc., since repetition is not allowed and half of the cards 
+	in the deck are red. 
+	
+	Summing up these possible lists, the total number of lists that meet the question's criteria is:
+	
+	\begin{align}
+	\prod_{i=0}^{n = 3} 52 - 13x + 26\fallingfactorial{4}\\
+	= 1,044,264
+	\end{align}
+
+\end{document}
+
+	
