@@ -1,0 +1,141 @@
+\documentclass{article}
+
+\usepackage{qtree}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{CSCI 301 Homework 2}
+\date{2018-05-01}
+\author{Brandon Chavez}
+
+\newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}%
+\newcommand{\contradiction}{%
+  \ensuremath{{\Rightarrow\mspace{-2mu}\Leftarrow}}%
+}
+\begin{document}
+	\maketitle
+	\pagenumbering{gobble}
+	\newpage
+	\pagenumbering{roman}
+	
+	\section{Problem 1} \textit{Prove that if two integers have the same parity, their sum is even}.
+	
+		\subsection{Direct Proof}
+		Let \textit{b} and \textit{c} be integers with the same parity. That is, they are either both even, or they 		are both odd.	
+		\subsection{Part 1} Suppose that \textit{b} and \textit{c} are even. Then \textit{b} and \textit{c} are 
+		of form $b = 2a_1$ and $c = 2a_2$ respectively where $a_1$ and $a_2$ 
+		are integers. Thus
+			
+			\begin{align*}
+			b + c &= 2a_1 + 2a_2\\
+			&= 2(a_1 + a_2)\\
+			&= 2(a_3).\\
+			\end{align*}
+			Where $a_3$ is some integer. Thus, the sum of two even integers must also be an even 				integer.
+		\subsection{Part 2} Suppose that \textit{b} and \textit{c} are odd. Then \textit{b} and \textit{c} are of 			the form $b = 2a1 +1$ and $c = 2a_2 +1$. Adding them, we find that
+		
+			\begin{align*}
+			b + c &= 2a_1 + 2a_2 + 1\\
+			&= 2a_1 + 2a_2 + 2\\
+			&= 2(a_1 + a_2 +1)\\
+			&= 2a_3.\\
+			\end{align*}
+			So the sum of two odd integers is an even number as well. Therefore, it must be the case that the sum of two integers is even when their parity is the same. \QEDA
+	
+	\section{Problem 2} \textit{Suppose that in $ a \in  \mathbb{Z}$. If $a^2$ is not divisible by 4, then $a$ is odd.}
+	
+		\subsection{Direct Proof} Suppose that $a^2$ is not divisible by 4. First, I will demonstrate that $a^2$ must be an odd number in this case. 
+		\subsubsection{Lemma 1} Suppose that $a^2$ is an even number. Then it is of the form $2n_1$, where $n_1$ is some integer. So we have
+		\begin{align*}
+		a^2 &= (2n_1)^2\\
+		&= 4n_1^2\\
+		&= 4n_2\\
+		\end{align*}
+		where $n_2$ is some integer. So, $4 \mid a^2$. So 4 divides $a^2$ but it also does not divide $a$ \contradiction. So it must be the case that $a^2$ is odd if 4 does not divide $a^2$.
+		
+		Then $a^2$ is an odd number and thereby of the form $2n + 1$. Next, I will demonstrate that $a^2$ must an odd number if and only if $a$ itself is an odd number.
+		\begin{align*}
+		a &= 2n_1 + 1     & a = 2n_1\\
+		a^2 &= 4n_1^2 + 2n_1 + 1     & a^2 = 4n_1^2\\
+		a^2 &= 2(2n_1^2 + n) + 1     & a^2 = 2(2n_1^2)\\
+		a^2 &= 2n + 1     & a^2 = 2n.\\
+		\end{align*}
+		So it follows that $a^2$ is only odd if a is also odd. Therefore, $a$ must be odd if 4 does not divide $a^2$. \QEDA
+	\section{Problem 3} \textit{Suppose $a, b \in \mathbb{Z}$. If 4 divides $a^2 + b^2$ then $a$ and $b$ are not both odd.}
+		\subsection{Proof by Contradiction} For the sake of contradiction, suppose that $4 \mid a^2 + b^2$ yet $a$ and $b$ are both odd. If 4 divides $a^2 + b^2$, then there exists some integer $k$ fo which $a^2 + b^2 = 4k$. Let $a$ and $b$ be $2c + 1$ and $2d + 1$ respectively. 
+		\begin{align*}
+		2c +1 &= 2d + 1 = 4k\\
+		2c + 2d + 2 &= 4k\\
+		2/4(c + d + 2) &= 4k\\
+		1/2(c + d + 2) &= k\\
+		\end{align*}
+		So $k \notin \mathbb{Z}$, so there exists not integer k for which $4k = a^2 + b^2$. So 4 divides $a^2 + b^2$ and 4 does not divide $a^2 + b^2$ \contradiction. So it must be the case that $a$ and $b$ are not both odd when 4 divides $a^2 + b^2$.
+		
+	\section{Problem 4} \textit{For all $n \in \mathbb{N}$:} 
+	\begin{align*}
+	\sum_{i=1}^{n} i(i + 1) = \frac{n(n + 1)(n + 2)}{3}
+	\end{align*}
+		\subsection{Proof by Induction} First we prove that this holds true for $n = 1$.
+		\begin{align*}
+		\sum_{i=1}^{1} 1(1 + 1) &= \frac{1(1 + 1)(1 + 2)}{3}\\
+		2 &= 2\\
+		\end{align*}
+		
+		Now for the inductive step. Consider any integer $k >= 1$. $S_k \implies S_k + 1$.	
+		\begin{align*}
+		\sum_{i=1}^{k} i(i + 1) &= \frac{k(k + 1)(k + 2)}{3} \implies \sum_{i=1}^{k + 1} i(i + 1) = \frac{(k + 1)((k + 1) + 1)((k + 1) + 2)}{3}\\
+		\sum_{i=1}^{k + 1} i(i + 1) &= (\sum_{i=1}^{k} i(i + 1)) + (k + 1)((k + 1) + 1)\\
+		&= \frac{(k + 1)((k + 1) + 1)((k + 1) + 2)}{3} = \sum_{i=1}^{k + 1} i(i + 1)\\			
+		\end{align*}	
+		
+		So it follows by induction that $\sum_{i=1}^{n} i(i + 1) = \frac{n(n + 1)(n + 2)}{3}$ for every $n \in \mathbb{N}$. \QEDA
+		
+	\section{Problem 5} \textit{For all $n \in \mathbb{N}$:} 
+	\begin{align*}
+	\sum_{i=1}^{n} (8i - 5) = 4n^2 - n\\
+	\end{align*}
+		\subsection{Proof by Induction} First we prove that this holds true for $n = 1$.
+		\begin{align*}
+		\sum_{i=1}^{1} (8(1) - 5) &= 4(1)^2 - 1\\
+		8 - 5 &= 4 - 1
+		3 &= 3n
+		\end{align*}
+		Now for the inductive step. Consider any integer $k >= 1$. $S_k \implies S_k + 1$.
+		\begin{align*}
+		\sum_{i=1}^{k + 1} (8i - 5) &= (\sum_{i=1}^{k} (8i - 5)) + 8(k + 1) - 5\\
+		&= 4k^2 - k + 8(k + 1) -5\\
+		&= 4k^2 + 8k + 3 - k\\
+		&= 4k^2 + 8k + 3 + 1 - 1 - k\\
+		&= 4k^2 + 8k + 4 - (k + 1)\\
+		&= 4(k + 1)^2 - (k + 1)\\
+		\end{align*}
+		So $\sum_{i=1}^{n} (8i - 5) = 4(k + 1)^2 - (k + 1)$. It follows by induction
+		that $\sum_{i=1}^{n} (8i - 5) = 4n^2 - n$ for all $n \in \mathbb{N}$. \QEDA
+		
+    	\section{Problem 6} \textit{For all $n \in \mathbb{N}: 9 \mid (4^3n + 8)$}
+		\subsection{Proof by Induction} If $n = 1$
+		\begin{align*}
+		9 \mid (4^3(1) + 8)\\
+		= 9 \mid 72.\\
+		\end{align*}
+		Note that this is true because $9*8=72$. Now for the inductive step. Consider any integer $k >= 1$. We will now prove that 
+		$9 \mid (4^3n + 8) \implies 9 \mid (4^3(k+1) + 8)$. We shall deduce this via Direct Proof. Suppose $9 \mid (4^3k + 8)$. Then there exists some number, $a$, for which $4^3k + 8 = 9a$. Substituting $k$ with $k + 1$ yields the following
+		\begin{align*}
+		4^(3(k+1)) + 8\\
+		&= 4^3 * 4^3k + 8\\
+		&= 4^3 * (4^3k + 8) - 8*4^3 + 8\\
+		&= 9a*64 - 504\\
+		&= 9(64a - 504)\\
+		\end{align*}
+		This demonstrates that $4^(3k+1) + 8$ is an integer multiple of 9. Thus, $9 \mid (4^3(k+1) + 8)$. So it is the case that $9 \mid (4^3(k) + 8) \implies 9 \mid (4^3(k+1) + 8)$. It follows by induction that for all $n \in \mathbb{N}, 9 \mid (4^3n + 8)$. \QEDA	
+\end{document}
+
+
+
+
+
+
+
+
+
+

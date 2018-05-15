@@ -1,0 +1,78 @@
+\documentclass{article}
+
+\usepackage{qtree}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{CSCI 301 Homework 3}
+\date{2018-05-01}
+\author{Brandon Chavez}
+
+\newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}%
+\newcommand{\contradiction}{%
+  \ensuremath{{\Rightarrow\mspace{-2mu}\Leftarrow}}%
+}
+
+\begin{document}
+	\maketitle
+	\pagenumbering{gobble}
+	\newpage
+	\pagenumbering{roman}
+	
+	\section{Problem 1} \textit{Consider the relation $\mid$ (divides) on the set $\mathbb{Z}$.}
+	\subsection{Part a} We will prove that $\mid$ is reflexive. Take any integer, $x \in \mathbb{Z}$. Obviously, $x\mid x$ for any value of x, so the relation $\mid$ is true on the set $\mathbb{Z}$. \QEDA
+	\subsection{Part b} We will now submit disproof that $\mid$ is symmetric by counterexample. The relation $\mid$ is symmetric by definition if for all $ \forall x, y \in \mathbb{Z}, x\mid y \implies y\mid x$. Observe that for $x = 4$ and $y = 8, 4 \mid 8$ yet $8 \nmid 4$. \QEDA
+	\subsection{Part c} Finally, we will submit contrapositive proof that that $\mid$ is transitive. Consider that if $\mid$ is transitive, then $\forall x, y, z \in \mathbb{Z}, ((x \mid y) \and (y \mid z)) \implies x \mid z$. Then let us suppose that $x \mid y$ and $y \mid z$. Then $y = za$, where $a$ is some integer, by definition of divisibility. Also, $z = yc$, where $c$ is some integer. Adding these statements, we find that
+	\begin{align*}
+	y + z &= xa + yc\\
+	z &= xa + xa*c + xa\\
+	z &= 2xa +xac\\
+	z &= x(2a + ac)\\
+	z &= x*d.
+	\end{align*}
+	where d is some integer. Thus, $x \mid z$. \QEDA
+	
+	\section{Problem 2} \textit{Assume R and S are two equivalence relations on a set A.}
+	\subsection{Part a} We will prove that $R \cup S$ is reflexive. Consider an integer $x \in A$. Since $R$ and $S$ are reflexive, as they are both equivalence relations, then $(x, x) \in R$ and $(x, x) \in S$. Therefore, $(x, x) \in R \cup S$ and $R \cup S$ is reflexive by definition. \QEDA
+	\subsection{Part b} We will now prove that $R \cup S$ is symmetric. Consider two integers, $x, y, \in A$. Suppose $(x, y) \in R \cup S$. Then, since $R$ and $S$ are symmetric, at least one of them must contain $(y, x)$. So $(x, y) \in R \cup S \implies (y, x) \in R \cup S$. Therefore, $R \cup S$ is symmetric by definition. \QEDA
+	\subsection{Part c} We will now offer disproof by counterexample that $R \cup S$ is transitive. That is, $\forall x, y, z \in A, ((xR \cup Sy) \and (yR \cup Sz)) \implies xR \cup Sz$. Now for our counterexample: Suppose $A = \{a, b, c\}, R = \{(a, b)\}, and S = \{(b, c)\}.$ Then $R \cup S = \{(a,b), (b,c)\}.$ Then $R \cup S$ is not transitive because although $(a,b)$ and $(b,c) \in R \cup S, (a,c)$ is not. \QEDA
+	
+	\section{Problem 3} \textit{Consider the function $\theta : \{0, 1\} * \mathbb{N} \implies \mathbb{Z} defined as \theta(a, b) = a - 2ab + b$}.
+	\subsection{Part a} We will now prove that $\theta(a, b)$ is injective. That is to say, $\forall (a,b), (c,d) \in \{0,1\} * \mathbb{N}, (a,b) \neq (c,d) \implies \theta(a,b) \neq \theta(c,d)$. We will do so via contrapositive proof. 
+
+Suppose $\theta(a,b) = \theta(c,d)$, where $a$ and $c$ are either 1 or 0, and $b$ and $d$ are elements of the set of Natural Numbers, and therefore integers more than 0. Then 
+	\begin{equation}
+	a - 2ab + b = c - 2cd + d
+	\end{equation}
+	Note that our assumption does not hold if, without loss of generality, $a = 0$ and $c = 1$. This is easily proven as follows:
+	\begin{align*}
+	0 - 0 + b &\neq 1 - 2d + d\\
+	b &\neq 1 - 2d + d\\
+	b &\neq 1 - d\\
+	\end{align*}
+	Notice that this is the case since, as previously defined, $b > 1$ and $d > 1$. Therefore, it must be the case that $a = c$. So it follows that whether $a = c = 0$ or $a = c = 1, b = d$. Observe that when $a = c = 0$...
+	\begin{align*}
+	0 - 0 + b &= 0 - 0 + d\\
+	b &= d\\
+	\end{align*}
+	And that when $a = c = 1$...
+	\begin{align*}
+	1 - 2b + b &= 1 - 2d + d\\
+	1 - b &= 1 - d\\
+	b &= d\\
+	\end{align*}
+	Therefore, $\theta(a,b) = \theta(c,d) \implies (a,b) = (c,d)$. Hence, $\theta(a,b)$ is injective. \QEDA
+	
+	\subsection{Part b} Finally, we shall provide disproof that $\theta(a,b)$ is surjective. Specifically, $\theta(a,b)$ is not surjective since there exists $c = -1 \in \mathbb{Z}$ for which $a - 2ab + b \neq -1 \forall (a,b) \in \{0,1\} * \mathbb{N}$. Notice that if $a = 0$, then...
+	\begin{align*}
+	-1 &\neq 0 - 0 + b\\
+	-1 &\neq b\\
+	\end{align*}
+	Since $b \in \mathbb{N}$ and $b > 0$ as a result. And if $a = 1$, then...
+	\begin{align*}
+	-1 &\neq 1 - 2b + b\\
+	-1 &\neq 1 - b\\
+	\end{align*}
+	Again, since $b$ is necessarily greater than 0. \QEDA
+	
+\end{document}
